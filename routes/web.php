@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PeliculaController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/peliculas/{page?}', [PeliculaController::class, 'index']);
+Route::get('/detalle/{year?}', [PeliculaController::class, 'detalle'])
+    ->middleware('testyear');
+Route::get('/redirigir', [PeliculaController::class, 'redirigir']);
+Route::resource('usuario', UsuarioController::class);
+/*
 Route::get('/mostrar-fecha', function () {
     $title = "Fecha de Hoy";
     return view('mostrar-fecha', array(
@@ -44,3 +51,11 @@ Route::get('/listado-peliculas', function (){
         ->with('title', $title)
         ->with('listado', $listado);
 });
+
+Route::get('/pagina-generica', function(){
+
+    return view('pagina');
+
+});
+
+*/
