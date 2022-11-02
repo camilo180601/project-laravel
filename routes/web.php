@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrutaController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,12 @@ Route::get('/detalle/{year?}', [PeliculaController::class, 'detalle'])
     ->middleware('testyear');
 Route::get('/redirigir', [PeliculaController::class, 'redirigir']);
 Route::resource('usuario', UsuarioController::class);
+Route::get('/formulario', [PeliculaController::class, 'formulario']);
+Route::post('/recibir', [PeliculaController::class, 'recibir']);
+Route::group(['prefix'=>'frutas'], function() {
+    Route::get('/', [FrutaController::class, 'index']);
+    Route::get('/detail/{id}', [FrutaController::class, 'detail']);
+});
 /*
 Route::get('/mostrar-fecha', function () {
     $title = "Fecha de Hoy";
