@@ -28,8 +28,14 @@ Route::resource('usuario', UsuarioController::class);
 Route::get('/formulario', [PeliculaController::class, 'formulario']);
 Route::post('/recibir', [PeliculaController::class, 'recibir']);
 Route::group(['prefix'=>'frutas'], function() {
-    Route::get('/', [FrutaController::class, 'index']);
-    Route::get('/detail/{id}', [FrutaController::class, 'detail']);
+    Route::get('/', [FrutaController::class, 'index'])
+            ->name('index.fruta');
+    Route::get('detail/{id}', [FrutaController::class, 'detail']);
+    Route::get('crear', [FrutaController::class, 'create']);
+    Route::post('save', [FrutaController::class, 'save']);
+    Route::get('delete/{id}', [FrutaController::class, 'delete']);
+    Route::get('editar/{id}', [FrutaController::class, 'edit']);
+    Route::post('update', [FrutaController::class, 'update']);
 });
 /*
 Route::get('/mostrar-fecha', function () {
